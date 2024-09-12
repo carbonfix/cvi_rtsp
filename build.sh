@@ -1,7 +1,5 @@
 #!/bin/sh
 
-FTP_SERVER_IP=${FTP_SERVER_IP:-10.80.0.5}
-
 usage()
 {
     echo "$0 usage"
@@ -23,8 +21,7 @@ fi
 
 if [ "${LIVE555_DIR}" = "" ]; then
     mkdir -p prebuilt
-    curl ftp://swftp:cvitek@${FTP_SERVER_IP}/sw_rls/third_party/latest/${SDK_VER}/live555.tar.gz \
-    --output prebuilt/live555.tar.gz
+    cp -rf "${TOP_DIR}/oss/oss_release_tarball/${SDK_VER}/live555.tar.gz" prebuilt/live555.tar.gz
     if [ $? != 0 ]; then
         echo "fail to download live555..."
         exit 1
